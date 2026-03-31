@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block title %}Thanh Vu & Associates — Chartered Accountants, Brisbane{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><div class="hero-tag-dot"></div>{{ t.home_hero_tag }}</div>
+    <h1 class="hero-title">{{ t.home_hero_title | safe }}</h1>
+    <p class="hero-sub">{{ t.home_hero_sub }}</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('contact') }}" class="btn btn-fill">{{ t.home_hero_btn1 }}</a>
+      <a href="{{ url_for('services') }}" class="btn btn-outline">{{ t.home_hero_btn2 }}</a>
+    </div>
+    <div class="hero-pillars">
+      <div class="pillar"><div class="pillar-val">26+</div><div class="pillar-label">{{ t.home_pillar1_lbl }}</div></div>
+      <div class="pillar"><div class="pillar-val">1000+</div><div class="pillar-label">{{ t.home_pillar2_lbl }}</div></div>
+      <div class="pillar"><div class="pillar-val">...%</div><div class="pillar-label">{{ t.home_pillar3_lbl }}</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hcards">
+      <div class="hcard">
+        <div class="hcard-label">{{ t.home_hcard1_label }}</div>
+        <div class="hcard-value">$...M</div>
+        <div class="hcard-sub">{{ t.home_hcard1_sub }}</div>
+      </div>
+      <div class="hcard-row">
+        <div class="hcard"><div class="hcard-label">{{ t.home_hcard2_label }}</div><div class="hcard-value">{{ t.home_hcard2_val }}</div><div class="hcard-sub">{{ t.home_hcard2_sub }}</div></div>
+        <div class="hcard"><div class="hcard-label">{{ t.home_hcard3_label }}</div><div class="hcard-value">100%</div><div class="hcard-sub">{{ t.home_hcard3_sub }}</div></div>
+      </div>
+      <div class="hcard">
+        <div class="hcard-label">{{ t.home_hcard4_label }}</div>
+        <div style="font-size:13px;font-weight:300;color:rgba(255,255,255,.65);margin-top:6px;line-height:1.8;">{{ t.home_hcard4_body | safe }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="home-services">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label">{{ t.home_svc_label }}</div>
+      <h2 class="sec-title">{{ t.home_svc_title | safe }}</h2>
+    </div>
+    <a href="{{ url_for('services') }}" class="sec-link">{{ t.home_svc_link }}</a>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-item reveal">
+      <div class="svc-num">01</div>
+      <div class="svc-name">{{ t.home_svc1_name }}</div>
+      <p class="svc-desc">{{ t.home_svc1_desc }}</p>
+      <a href="{{ url_for('services') }}" class="svc-more">{{ t.home_svc_more }}</a>
+    </div>
+    <div class="svc-item reveal">
+      <div class="svc-num">02</div>
+      <div class="svc-name">{{ t.home_svc2_name }}</div>
+      <p class="svc-desc">{{ t.home_svc2_desc }}</p>
+      <a href="{{ url_for('services') }}" class="svc-more">{{ t.home_svc_more }}</a>
+    </div>
+    <div class="svc-item reveal">
+      <div class="svc-num">03</div>
+      <div class="svc-name">{{ t.home_svc3_name }}</div>
+      <p class="svc-desc">{{ t.home_svc3_desc }}</p>
+      <a href="{{ url_for('services') }}" class="svc-more">{{ t.home_svc_more }}</a>
+    </div>
+    <div class="svc-item reveal">
+      <div class="svc-num">04</div>
+      <div class="svc-name">{{ t.home_svc4_name }}</div>
+      <p class="svc-desc">{{ t.home_svc4_desc }}</p>
+      <a href="{{ url_for('services') }}" class="svc-more">{{ t.home_svc_more }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="sec-label">{{ t.home_testi_label }}</div>
+  <h2 class="sec-title">{{ t.home_testi_title }}</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+      <div class="testi-who"><div class="testi-av">MH</div><div><div class="testi-name">Client's name</div><div class="testi-co">company name</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="testi-who"><div class="testi-av">MH</div><div><div class="testi-name">Client's name</div><div class="testi-co">company name</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <div class="testi-who"><div class="testi-av">MH</div><div><div class="testi-name">Client's name</div><div class="testi-co">company name</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div>
+    <div class="cta-eyebrow">{{ t.home_cta_eyebrow }}</div>
+    <h2 class="cta-title">{{ t.home_cta_title | safe }}</h2>
+  </div>
+  <div class="cta-btns">
+    <a href="{{ url_for('contact') }}" class="btn btn-white">{{ t.home_cta_btn1 }}</a>
+    <a href="{{ url_for('services') }}" class="btn btn-ghost">{{ t.home_cta_btn2 }}</a>
+  </div>
+</section>
+
+{% endblock %}
