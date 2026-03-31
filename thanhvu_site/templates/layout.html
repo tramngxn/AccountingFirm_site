@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Thanh Vu & Associates{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    .lang-toggle { display:flex; align-items:center; gap:.35rem; font-size:.8rem; margin-left:.5rem; }
+    .lang-toggle a { color:var(--ink-faint); text-decoration:none; font-weight:500; transition:color .2s; }
+    .lang-toggle a:hover, .lang-toggle a.lang-active { color:var(--accent); }
+    .lang-toggle span { color:var(--border); }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <nav>
+    <a href="{{ url_for('home') }}" class="nav-logo">
+      Thanh Vu &amp; Associates
+      <span> Accountants</span>
+    </a>
+    <div class="nav-sep"></div>
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}"       class="{{ 'active' if request.endpoint == 'home' }}">{{ t.nav_home }}</a>
+      <a href="{{ url_for('services') }}"   class="{{ 'active' if request.endpoint == 'services' }}">{{ t.nav_services }}</a>
+      <a href="{{ url_for('about') }}"      class="{{ 'active' if request.endpoint == 'about' }}">{{ t.nav_about }}</a>
+      <a href="{{ url_for('dashboard') }}"  class="{{ 'active' if 'dashboard' in request.endpoint }}">{{ t.nav_dashboard }}</a>
+      <a href="{{ url_for('contact') }}"    class="nav-cta {{ 'active' if request.endpoint in ('contact', 'book') }}">{{ t.nav_contact }}</a>
+      <div class="lang-toggle">
+        <a href="{{ url_for('set_lang', code='en') }}" class="{{ 'lang-active' if lang == 'en' }}">EN</a>
+        <span>|</span>
+        <a href="{{ url_for('set_lang', code='vi') }}" class="{{ 'lang-active' if lang == 'vi' }}">VI</a>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <div class="ft-logo">Thanh Vu &amp; Associates</div>
+    <div class="ft-copy">{{ t.footer_copy }}</div>
+    <div class="ft-links">
+      <a href="{{ url_for('about') }}">{{ t.nav_about }}</a>
+      <a href="{{ url_for('services') }}">{{ t.nav_services }}</a>
+      <a href="{{ url_for('contact') }}">{{ t.nav_contact }}</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll shadow on nav
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 8 ? '0 2px 16px rgba(0,0,0,0.07)' : 'none';
+    }, { passive: true });
+
+    // Simple scroll-reveal
+    const els = document.querySelectorAll('.reveal');
+    els.forEach((el, i) => {
+      el.style.cssText += `opacity:0;transform:translateY(14px);transition:opacity .4s ease ${i%5*.07}s,transform .4s ease ${i%5*.07}s`;
+    });
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+    }, { threshold: 0.1 }).observe
+    // observe all reveal els
+    ;(new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+    }, { threshold: 0.1 })).observe && els.forEach(el => {
+      (new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+      }, { threshold: 0.1 })).observe(el);
+    });
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
