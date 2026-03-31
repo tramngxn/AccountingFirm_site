@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard — Thanh Vu & Associates{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="dash-wrap">
+
+  <div class="dash-header">
+    <h1>Dashboard</h1>
+    <p>Welcome back — here's your financial overview.</p>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card reveal">
+      <div class="kpi-label">Revenue (YTD)</div>
+      <div class="kpi-val">$842K</div>
+      <div class="kpi-change up">↑ 12% vs last year</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-label">Expenses (YTD)</div>
+      <div class="kpi-val">$391K</div>
+      <div class="kpi-change down">↑ 4% vs last year</div>
+    </div>
+    <div class="kpi-card reveal">
+      <div class="kpi-label">Net Profit</div>
+      <div class="kpi-val">$451K</div>
+      <div class="kpi-change up">↑ 18% vs last year</div>
+    </div>
+    <div class="kpi-card accent reveal">
+      <div class="kpi-label">Tax Saved (FY24)</div>
+      <div class="kpi-val">$38K</div>
+      <div class="kpi-change">Proactive planning</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="dash-grid">
+
+    <!-- RECENT TRANSACTIONS -->
+    <div class="card reveal">
+      <div class="card-title">Recent transactions</div>
+      <table class="table">
+        <thead>
+          <tr><th>Description</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          {% set txns = [
+            ('Q2 BAS 2025–26 (Oct–Dec)',  '28 Feb 2026', 'Lodged'),
+            ('Q1 BAS 2025–26 (Jul–Sep)',  '25 Nov 2025', 'Lodged'),
+            ('Tax Return FY25',           '31 Oct 2025', 'Lodged'),
+            ('Q4 BAS 2024–25 (Apr–Jun)',  '25 Aug 2025', 'Lodged'),
+
+  
+
+          ] %}
+          {% for desc, date, status in txns %}
+          <tr>
+            <td>{{ desc }}</td>
+            <td>{{ date }}</td>
+            <td>
+              {% if status in ['Lodged','Processed','Complete'] %}
+                <span class="badge badge-green">{{ status }}</span>
+              {% elif status == 'Invoiced' %}
+                <span class="badge badge-amber">{{ status }}</span>
+              {% else %}
+                <span class="badge badge-red">{{ status }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+      <!-- UPCOMING LODGEMENTS -->
+      <div class="card reveal">
+        <div class="card-title">Upcoming lodgements</div>
+        <table class="table">
+          <tbody>
+            {% for item, due in [
+              ('Q3 BAS 2025–26 (Jan–Mar)',  '26 May 2026'),
+              ('Q4 BAS 2025–26 (Apr–Jun)',  '25 Aug 2026'),
+            ] %}
+            <tr>
+              <td>{{ item }}</td>
+              <td style="text-align:right; font-size:12px;">{{ due }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="card reveal">
+        <div class="card-title">Quick links</div>
+        <div class="quick-links">
+          <a href="{{ url_for('dashboard_spreadsheet') }}" class="quick-link">
+            Spreadsheet view <span class="quick-link-arrow">→</span>
+          </a>
+          <a href="{{ url_for('dashboard_calculator') }}" class="quick-link">
+            Tax calculator <span class="quick-link-arrow">→</span>
+          </a>
+          <a href="{{ url_for('contact') }}" class="quick-link">
+            Contact your accountant <span class="quick-link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
