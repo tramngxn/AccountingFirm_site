@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block title %}Spreadsheet — Thanh Vu & Associates{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<div class="dash-wrap">
+  <a href="{{ url_for('dashboard') }}" class="dash-back">← Back to Dashboard</a>
+  <h1>Spreadsheet view</h1>
+  <p class="sub">Edit cells directly — this is a front-end example layout.</p>
+
+  <div class="sheet-card">
+    <div class="sheet-toolbar">
+      <button>+ Add Row</button>
+      <button>Export CSV</button>
+      <button>Print</button>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="sheet">
+        <thead>
+          <tr>
+            <th style="width:200px;">Category</th>
+            <th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th>
+            <th>Nov</th><th>Dec</th><th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set rows = [
+            ('Revenue',        ['84,000','91,000','88,500','95,000','102,000','98,000','558,500']),
+            ('Cost of Sales',  ['32,000','34,500','33,000','36,200','38,500','37,000','211,200']),
+            ('Gross Profit',   ['52,000','56,500','55,500','58,800','63,500','61,000','347,300']),
+            ('Operating Exp.', ['18,000','19,200','17,800','20,100','21,500','20,000','116,600']),
+            ('EBITDA',         ['34,000','37,300','37,700','38,700','42,000','41,000','230,700']),
+          ] %}
+          {% for label, vals in rows %}
+          <tr class="{{ 'total-row' if loop.last }}">
+            <td class="row-label"><input type="text" value="{{ label }}" /></td>
+            {% for v in vals %}
+            <td><input type="text" value="{{ v }}" /></td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
