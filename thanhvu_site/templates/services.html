@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block title %}Services — Thanh Vu & Associates{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero-label">{{ t.svc_hero_label }}</div>
+  <h1 class="page-hero-title">{{ t.svc_hero_title | safe }}</h1>
+  <p class="page-hero-sub">{{ t.svc_hero_sub }}</p>
+</section>
+
+<section style="padding:5rem 2.5rem; background:var(--white);">
+  <div class="svc-full-grid">
+    <div class="svc-full-item reveal">
+      <div class="svc-num">01</div>
+      <div class="svc-name">{{ t.svc1_name }}</div>
+      <p class="svc-desc">{{ t.svc1_desc }}</p>
+      <ul class="svc-bullets">
+        {% for b in t.svc1_bullets %}<li>{{ b }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="svc-full-item reveal">
+      <div class="svc-num">02</div>
+      <div class="svc-name">{{ t.svc2_name }}</div>
+      <p class="svc-desc">{{ t.svc2_desc }}</p>
+      <ul class="svc-bullets">
+        {% for b in t.svc2_bullets %}<li>{{ b }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="svc-full-item reveal">
+      <div class="svc-num">03</div>
+      <div class="svc-name">{{ t.svc3_name }}</div>
+      <p class="svc-desc">{{ t.svc3_desc }}</p>
+      <ul class="svc-bullets">
+        {% for b in t.svc3_bullets %}<li>{{ b }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div class="svc-full-item reveal">
+      <div class="svc-num">04</div>
+      <div class="svc-name">{{ t.svc4_name }}</div>
+      <p class="svc-desc">{{ t.svc4_desc }}</p>
+      <ul class="svc-bullets">
+        {% for b in t.svc4_bullets %}<li>{{ b }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="ind-section">
+  <div class="sec-label">{{ t.svc_ind_label }}</div>
+  <h2 class="sec-title">{{ t.svc_ind_title }}</h2>
+  <div class="ind-grid">
+    {% for ind in t.svc_industries %}
+    <span class="ind-tag reveal">{{ ind }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band">
+  <div>
+    <div class="cta-eyebrow">{{ t.svc_cta_eyebrow }}</div>
+    <h2 class="cta-title">{{ t.svc_cta_title | safe }}</h2>
+  </div>
+  <div class="cta-btns">
+    <a href="{{ url_for('contact') }}" class="btn btn-white">{{ t.svc_cta_btn }}</a>
+  </div>
+</section>
+
+{% endblock %}
