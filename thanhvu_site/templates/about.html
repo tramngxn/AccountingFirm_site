@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block title %}About — Thanh Vu & Associates{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero-label">{{ t.about_hero_label }}</div>
+  <h1 class="page-hero-title">{{ t.about_hero_title | safe }}</h1>
+  <p class="page-hero-sub">{{ t.about_hero_sub }}</p>
+</section>
+
+<section class="about-split">
+  <div class="about-l">
+    <div class="sec-label">{{ t.about_why_label }}</div>
+    <h2 class="sec-title">{{ t.about_why_title | safe }}</h2>
+    <p class="about-body">{{ t.about_body1 }}</p>
+    <p class="about-body" style="margin-top:1rem;">{{ t.about_body2 }}</p>
+    <div class="checks">
+      {% for item in t.about_checks %}
+      <div class="check reveal">
+        <div class="check-icon"><svg viewBox="0 0 10 10" fill="none"><polyline points="1.5,5.5 4,8 8.5,2" stroke="#2B5F4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        {{ item }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="about-r">
+    <div class="sec-label">{{ t.about_stats_label }}</div>
+    <div class="stats-grid">
+      <div class="stat-box reveal"><div class="stat-val">26+</div><div class="stat-lbl">{{ t.about_stat1_lbl }}</div></div>
+      <div class="stat-box reveal"><div class="stat-val">1000+</div><div class="stat-lbl">{{ t.about_stat2_lbl }}</div></div>
+      <div class="stat-box reveal"><div class="stat-val">97%</div><div class="stat-lbl">{{ t.about_stat3_lbl }}</div></div>
+      <div class="stat-box accent reveal"><div class="stat-val">$...M</div><div class="stat-lbl">{{ t.about_stat4_lbl }}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="sec-label">{{ t.about_team_label }}</div>
+  <h2 class="sec-title">{{ t.about_team_title }}</h2>
+  <div class="team-grid">
+    {% for m in [
+      ('TV','Thanh Vu', t.about_role_accountant,'CPA'),
+      ('HV','Hai Vu',   t.about_role_accountant,'CPA'),
+      ('AA','Name',     t.about_role_assistant, 'CPA'),
+      ('AA','Name',     t.about_role_assistant, 'CPA'),
+    ] %}
+    <div class="team-card reveal">
+      <div class="t-av">{{ m[0] }}</div>
+      <div class="t-name">{{ m[1] }}</div>
+      <div class="t-role">{{ m[2] }}</div>
+      <div class="t-cred">{{ m[3] }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="values-section">
+  <div class="sec-label">{{ t.about_values_label }}</div>
+  <h2 class="sec-title">{{ t.about_values_title }}</h2>
+  <div class="values-grid">
+    <div class="val-card reveal">
+      <div class="val-num">01</div>
+      <div class="val-title">{{ t.about_val1_title }}</div>
+      <p class="val-body">{{ t.about_val1_body }}</p>
+    </div>
+    <div class="val-card reveal">
+      <div class="val-num">02</div>
+      <div class="val-title">{{ t.about_val2_title }}</div>
+      <p class="val-body">{{ t.about_val2_body }}</p>
+    </div>
+    <div class="val-card reveal">
+      <div class="val-num">03</div>
+      <div class="val-title">{{ t.about_val3_title }}</div>
+      <p class="val-body">{{ t.about_val3_body }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div>
+    <div class="cta-eyebrow">{{ t.about_cta_eyebrow }}</div>
+    <h2 class="cta-title">{{ t.about_cta_title | safe }}</h2>
+  </div>
+  <div class="cta-btns">
+    <a href="{{ url_for('contact') }}" class="btn btn-white">{{ t.about_cta_btn1 }}</a>
+    <a href="{{ url_for('services') }}" class="btn btn-ghost">{{ t.about_cta_btn2 }}</a>
+  </div>
+</section>
+
+{% endblock %}
