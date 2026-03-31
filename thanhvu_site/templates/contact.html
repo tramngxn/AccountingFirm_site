@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block title %}Contact — Thanh Vu & Associates{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="page-hero-label">{{ t.contact_hero_label }}</div>
+  <h1 class="page-hero-title">{{ t.contact_hero_title | safe }}</h1>
+  <p class="page-hero-sub">{{ t.contact_hero_sub }}</p>
+</section>
+
+<section class="contact-layout">
+  <div class="contact-info">
+    <div>
+      <div class="sec-label">{{ t.contact_details_label }}</div>
+      <h2 class="sec-title" style="max-width:260px;">{{ t.contact_details_title }}</h2>
+    </div>
+    <div class="reveal"><div class="cd-label">{{ t.contact_phone_label }}</div><div class="cd-val">(07) 3278 8811</div><div class="cd-sub">{{ t.contact_phone_sub }}</div></div>
+    <div class="reveal"><div class="cd-label">{{ t.contact_email_label }}</div><div class="cd-val">honghaivu26@gmail.com</div><div class="cd-sub">{{ t.contact_email_sub }}</div></div>
+    <div class="reveal"><div class="cd-label">{{ t.contact_office_label }}</div><div class="cd-val">133 Inala Ave, Inala QLD 4077</div><div class="cd-sub">{{ t.contact_office_sub }}</div></div>
+    <div class="reveal" style="border-top:1px solid var(--border); padding-top:2rem;">
+      <div class="sec-label" style="margin-bottom:.75rem;">{{ t.contact_hours_label }}</div>
+      <div style="display:flex; flex-direction:column; gap:.5rem;">
+        <div class="hours-row"><span>{{ t.contact_hours_mf }}</span><span>{{ t.contact_hours_mf_val }}</span></div>
+        <div class="hours-row"><span>{{ t.contact_hours_sat }}</span><span>{{ t.contact_hours_sat_val }}</span></div>
+        <div class="hours-row"><span>{{ t.contact_hours_sun }}</span><span style="color:var(--ink-faint);">{{ t.contact_hours_sun_val }}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }}">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <h2>{{ t.contact_form_title }}</h2>
+    <form method="POST" action="{{ url_for('book') }}">
+      <div class="form-group"><label>{{ t.contact_form_name }}</label><input type="text" name="name" placeholder="{{ t.contact_form_name_ph }}" required /></div>
+      <div class="form-row">
+        <div class="form-group"><label>{{ t.contact_form_email }}</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>{{ t.contact_form_phone }}</label><input type="tel" name="phone" placeholder="0400 000 000" required /></div>
+      </div>
+      <div class="form-group">
+        <label>{{ t.contact_form_service }}</label>
+        <select name="service" required>
+          <option value="" disabled selected>{{ t.contact_form_service_ph }}</option>
+          {% for svc in t.contact_form_services %}
+          <option>{{ svc }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>{{ t.contact_form_date }}</label><input type="date" name="date" required /></div>
+        <div class="form-group"><label>{{ t.contact_form_time }}</label><input type="time" name="time" min="09:00" max="17:00" required /></div>
+      </div>
+      <div class="form-group"><label>{{ t.contact_form_notes }}</label><textarea name="notes" placeholder="{{ t.contact_form_notes_ph }}"></textarea></div>
+      <button type="submit" class="btn btn-fill" style="width:100%; padding:15px;">{{ t.contact_form_submit }}</button>
+      <p class="form-note">{{ t.contact_form_note }}</p>
+    </form>
+
+  </div>
+</section>
+
+<section class="contact-map">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.8741168713805!2d152.97330207722314!3d-27.597432122163973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b914f1baf48a4e5%3A0x7b5478f0e5d940c2!2s133%20Inala%20Ave%2C%20Inala%20QLD%204077!5e0!3m2!1sen!2sau!4v1774914814525!5m2!1sen!2sau"
+    width="100%"
+    height="420"
+    style="border:0; display:block;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Thanh Vu & Associates office location">
+  </iframe>
+</section>
+
+<style>
+.contact-map {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+</style>
+
+{% endblock %}
