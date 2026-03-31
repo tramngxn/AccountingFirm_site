@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -L -I \"https://share.google/PgSQzWB2VjWn4VcEm\")",
+      "Bash(curl -sL \"https://www.google.com/share.google?q=PgSQzWB2VjWn4VcEm\")",
+      "Bash(curl -sL \"https://www.google.com/share.google?q=PgSQzWB2VjWn4VcEm\" -o /tmp/share_page.html)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
